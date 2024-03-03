@@ -1,0 +1,25 @@
+include ../layouts/main-layout.pug
+
+main
+if prods.length > 0
+    //- #{JSON.stringify(prods)}
+    ul.cart__item-list
+        each prod in prods
+            li.cart__item
+                h1 #{prod.productId.title}
+                h2 Quantity: #{prod.quantity}
+    .centered 
+        h2 TotalPrice: $#{totalSum}
+    .centered
+        button.btn(id="order-btn")  ORDER 
+        script(src="https://js.stripe.com/v3/")      
+        script.
+            let stripe=Stripe("pk_test_51MpoW2SEE3cHbABam1Ix5tINRzdH0dNLza9XmKFF4sWWstlyJXevhaPJx48PgUJX3lxDIQ4DZCQ4n2G1ghWERKWg00HyrlcJfV")     
+            let orderBtn = document.getElementById('order-btn');
+            orderBtn.addEventListener('click',function(){
+                stripe.redirectToCheckout({
+                    sessionId:'#{sessionId}'
+                })
+            })     
+//- else 
+//-     h1.card__image No products

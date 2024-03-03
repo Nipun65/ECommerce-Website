@@ -1,0 +1,17 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "no-console": "off",
+    "semi": "error",
+    "quotes": ["error", "single"],
+    "no-unused-vars": 0
+  }
+}

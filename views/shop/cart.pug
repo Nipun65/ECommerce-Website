@@ -1,0 +1,29 @@
+include ../layouts/main-layout.pug
+
+main
+if prods.length > 0
+    .grid
+        each product in prods
+            article.card.product-item
+                header.card__header
+                    h1.product__title #{product.productId.title} (#{product.quantity})
+                div.card__image
+                    img(src=`${product.productId.imageUrl}` class='image-fit' alt="product image")
+                div.card__content
+                    h2.product__price #{product.productId.price}
+                    p.product__description #{product.productId.description}
+                .card__actions
+                    form(action='/cart-delete-item' method="post")
+                        button.btn Delete
+                        input( type="hidden" value=csrfToken name="_csrf")
+                        input(type='hidden' value=product.productId._id name="productId")
+                
+        div.card__image
+            //- form(action='/create-order' method="post")
+            //-     input( type="hidden" value=csrfToken name="_csrf")
+            //-     button.btn Add to order !!
+            a(href="/checkout" class='btn') Order Now!
+                    
+                        
+else 
+    h1.card__image No products in your Cart

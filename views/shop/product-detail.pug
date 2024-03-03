@@ -1,0 +1,12 @@
+include ../layouts/main-layout.pug
+
+main.centered
+    h1 #{product.title}
+    hr
+    div
+        img(src=`${product.imageUrl}` class='image-fit' alt="product image")
+    h2 #{product.price}
+    h2 #{product.description}
+    div.card-actions
+        include ../common/add-to-cart.pug
+        

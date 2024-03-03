@@ -1,0 +1,27 @@
+extends ../layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/product.css")
+    link(rel="stylesheet", href="/css/forms.css")
+
+block content
+    #{JSON.stringify(errorMessages)}
+    if errorMessages
+        div.user-message.user-message--error #{errorMessages}
+    form.product-form(action=`/admin/${editMode ? 'edit-product':'add-product'}` method="POST" enctype="multipart/form-data")
+        div.form-control
+            label(for="title") Title
+            input(type="text" name="title" id="title" value=`${editMode ? product.title:''}`)
+        div.form-control
+            label(for="image") Image
+            input(type="file" name="image" id="image")
+        div.form-control
+            label(for="price") Price
+            input(type="text" name="price" id="price" value=`${editMode ? product.price:''}`)
+        div.form-control
+            label(for="description") Description
+            textarea(type="text" name="description" id="description") #{editMode ? product.description:''}
+        div.form-control
+            input( type="hidden" value=csrfToken name="_csrf")
+            input(type='hidden' value=`${editMode ? product._id : null}` name='id')
+        button(type="submit") #{editMode ? 'Update':'Add'} Product

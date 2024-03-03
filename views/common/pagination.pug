@@ -1,0 +1,10 @@
+section.pagination
+    if (currentPage!==1 && previousPage!==1)
+        a(href="?page=1") 1
+    if (hasPreviousPage)
+        a(href=`?page=${previousPage}` class='active') #{previousPage}
+    a(href=`?page=${currentPage}` class='active') #{currentPage}
+    if (hasNextPage)
+        a(href=`?page=${nextPage}` class='active') #{nextPage}
+    if (lastPage!==currentPage && nextPage!==lastPage)
+        a(href=`?page=${lastPage}` class='active') #{lastPage}

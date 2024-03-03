@@ -1,0 +1,22 @@
+extends ../layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/orders.css")
+
+block content
+    if orders.length>0
+        ul.orders
+            each order in orders
+                li.orders__item
+                    h1 Order - # #{order._id}&nbsp;
+                         a(href=`/orders/${order._id}` target="_blank") - Invoice
+                    ul.order__products
+                        each product in order.products
+                            li.orders__products-item #{product.product.title} (#{product.quantity})
+        //- each order in orders
+        //-     div Order - # #{order._id}
+        //-     each product in order.products
+        //-         div #{product.product.title} (#{product.quantity})
+
+    else 
+        h1.card__image Nothing there !

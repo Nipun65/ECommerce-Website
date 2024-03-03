@@ -1,0 +1,20 @@
+extends ../layouts/main-layout.pug
+
+block styles
+    link(rel="stylesheet", href="/css/forms.css")
+    link(rel="stylesheet", href="/css/auth.css")
+
+block content
+    if errorMessages
+        div.user-message.user-message--error #{errorMessages}
+    form.login-form(action='/login' method="post")
+        div.form-control
+            label(for="email") E-mail
+            input(type="email" name="email" id="email" value=oldInput.email class=`${validationErrors.find(e=>e.param==='email') ? 'invalid':''}`)
+        div.form-control
+            label(for="password") Password
+            input(type="password" name="password" id="password" value=oldInput.password class=`${validationErrors.find(e=>e.param==='password') ? 'invalid':''}`) 
+        input( type="hidden" value=csrfToken name="_csrf")
+        button(type="submit") Login
+    .centered 
+        a(href='/reset-password') Reset Password
