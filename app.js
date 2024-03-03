@@ -46,7 +46,7 @@ app.set("views", "views");
 const adminRoutes = require("./routes/admin.js");
 const shopRoutes = require("./routes/shop.js");
 const authRoutes = require("./routes/auth.js");
-const { get404Page, get500Page } = require("./controllers/get404page.js");
+const { get404Page, get500Page } = require("./controllers/get404Page.js");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
